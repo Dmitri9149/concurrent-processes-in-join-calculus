@@ -1,0 +1,23 @@
+(*fork n concurrent tasks and wait for those to complete*)
+
+let create_countdown n =
+        def count(n) & tick() = count(n-1)
+        or  count(0) & wait() = reply to wait in
+        spawn count(n) ;
+        tick,wait
+;;
+
+let n = 5
+;;
+
+let tick , wait = create_countdown n
+;;
+
+print_string "(";
+for i = 0 to n-1 do
+        spawn begin print_int i; tick()  end
+done ;
+wait () ;
+print_string ")"
+print_newline ""
+;;
