@@ -21,9 +21,18 @@ spawn (print_n 21 "*" ; 0) & (print_n 21 "+" ; 0)
 
 let lock, unlock = new_lock()
 ;;
+
 spawn begin
         (lock() ; print_n 21 "*" ; unlock() ; 0)
       & (lock() ; print_n 21 "+" ; unlock() ; 0)
 end
 ;;
+
+spawn begin
+     (lock() ; print_n 21 "*" ; unlock() ; 0) 
+   & (lock() ; print_n 21 "+" ; unlock() ; 0)  
+ end
+ ;;
+
+
 
