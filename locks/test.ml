@@ -1,12 +1,19 @@
-spawn begin
-        (print_string "AAAAAAAAAAAAAAAAAAAAAAAAAAA" ; 0)
-      end
+def tick () = print_string "AAA!!!"; reply to tick
 ;;
 
-flush stdout
+print_string "(";
+         tick() ;
+print_string ")"
 ;;
 
-def count () = print_string "HHHHHHHHHHHHHHHHH"; 0
+
+let print_n n s =
+        for i = 1 to n do
+               print_string s; Thread.delay 0.01
+        done
 ;;
-spawn count()
+
+spawn  (print_n 21 "*" ; print_newline () ; 0) 
+& (print_n 1 "+" ; print_newline (); 0)
 ;;
+
