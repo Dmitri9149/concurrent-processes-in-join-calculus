@@ -16,7 +16,7 @@ let print_n n s =
         done
 ;;
 
-spawn (print_n 21 "*" ; 0) & (print_n 21 "+" ; 0)
+spawn (print_n 21 "*" ; print_newline () ; 0) & (print_n 21 "+" ; print_newline () ; 0)
 ;;
 
 let lock, unlock = new_lock()
