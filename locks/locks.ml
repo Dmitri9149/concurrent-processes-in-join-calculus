@@ -12,11 +12,14 @@ let new_lock () =
 
 let print_n n s = 
         for i = 1 to n do 
-                print_string s; Thread.delay 0.01
+               print_string s; Thread.delay 0.01
         done
 ;;
 
 spawn (print_n 21 "*" ; print_newline () ; 0) & (print_n 21 "+" ; print_newline () ; 0)
+;;
+
+flush stdout
 ;;
 
 let lock, unlock = new_lock()
