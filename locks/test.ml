@@ -5,3 +5,8 @@ spawn begin
 
 flush stdout
 ;;
+
+def count () = print_string "HHHHHHHHHHHHHHHHH"; 0
+;;
+spawn count()
+;;
