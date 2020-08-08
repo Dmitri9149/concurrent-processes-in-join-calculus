@@ -16,26 +16,32 @@ let print_n n s =
         done
 ;;
 
-spawn (print_n 21 "*" ; print_newline () ; 0) & (print_n 21 "+" ; print_newline () ; 0)
+(* * and + are intermitted *)
+spawn (print_n 10 "*" ; print_newline () ; 0) & (print_n 10 "+" ; print_newline () ; 0)
 ;;
 
-flush stdout
+(* need the code to execute  all processes above before the
+ * programm will finish *)
+let () = Thread.delay 10.0
 ;;
+
 
 let lock, unlock = new_lock()
 ;;
 
+(* firstly is printed one letter then the second *)
 spawn begin
-        (lock() ; print_n 21 "*" ; unlock() ; 0)
-      & (lock() ; print_n 21 "+" ; unlock() ; 0)
+        (lock() ; print_n 10 "z" ; unlock() ; 0)
+      & (lock() ; print_n 10 "x" ; unlock() ; 0)
 end
 ;;
 
-spawn begin
-     (lock() ; print_n 21 "*" ; unlock() ; 0) 
-   & (lock() ; print_n 21 "+" ; unlock() ; 0)  
- end
- ;;
+(* need the code to execute  all processes above before the 
+ * programm will finish *)
+let () = Thread.delay 10.0
+;;
+
+
 
 
 
