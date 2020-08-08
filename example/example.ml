@@ -1,3 +1,4 @@
+(* the code is from here https://en.wikipedia.org/wiki/JoCaml     *)
 type coins = Nickel | Dime
 and drinks = Coffee | Tea
 and buttons = BCoffee | BTea | BCancel;;
